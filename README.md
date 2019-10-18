@@ -2,12 +2,12 @@
 Contacts is a sample Application which I developed while learning Xamarin Forms. I developed this project in MVVM architecture and can be able to run in both iOS and Android devices.I have used SQLite local Database and imlpemented many more features. I think this project will help lot of new developers who started learning Xamarin development.
 
 <p align="center">
-<img src="https://github.com/shankarmadeshvaran/Xamarin_Contacts/blob/master/ScreenShots/Screen1.png" width="50%" height="35%"/>
-<img src="https://github.com/shankarmadeshvaran/Xamarin_Contacts/blob/master/ScreenShots/Screen1.png" width="50%" height="35%"/>
+<img src="https://github.com/shankarmadeshvaran/Xamarin_Contacts/blob/master/ScreenShots/Screen1.png" width="40%" height="35%"/>
+<img src="https://github.com/shankarmadeshvaran/Xamarin_Contacts/blob/master/ScreenShots/Screen2.png" width="40%" height="35%"/>
 </p>
 
 <p>
-<img src="https://github.com/shankarmadeshvaran/Xamarin_Contacts/blob/master/ScreenShots/Screen1.png" width="30%" height="35%"/>
+<img src="https://github.com/shankarmadeshvaran/Xamarin_Contacts/blob/master/ScreenShots/Screen3.png" width="30%" height="35%"/>
 <img src="https://github.com/shankarmadeshvaran/Xamarin_Contacts/blob/master/ScreenShots/Screen4.png" width="30%" height="35%"/>
 <img src="https://github.com/shankarmadeshvaran/Xamarin_Contacts/blob/master/ScreenShots/Screen5.png" width="30%" height="35%"/>
 </p>
@@ -24,8 +24,7 @@ There are three core components in the MVVM pattern: the model, the view, and th
 I'll constantly update this project whenever I find the great coding standards and better architecture. So when you came across any error or better method to do code , feel free to raise a issue or contact me via [Twitter](https://twitter.com/Shankar__am)
 
 ## More Updates
-Follow me on [Twitter](https://twitter.com/Shankar__am) to get the latest update about features, code and more. 
-Consider star the repo if you like it. 
+I'll constanly implement lot more features whenever something popup in my mind.Follow me on [Twitter](https://twitter.com/Shankar__am) or [LinkedIn](https://www.linkedin.com/in/shankar-mathesh) to get the latest update about features, code and more. Consider star the repo if you like it.
 
 ## References
 1. [MVVM Pattern](https://docs.microsoft.com/en-us/xamarin/xamarin-forms/enterprise-application-patterns/mvvm)
