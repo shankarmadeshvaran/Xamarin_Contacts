@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage Title="Contacts"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Contacts.ViewModels"
+             x:Class="Contacts.Views.ContactsPage"
+             x:Name="contactsPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <vm:ContactsVM x:Key="vm" />
+
+            <!--#region Label Style-->
+            <Style x:Key="NameLabel" TargetType="Label">
+                <Setter Property="FontSize" Value="11" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor" Value="Black" />
+            </Style>
+
+            <Style x:Key="LabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="8" />
+            </Style>
+
+            <Style x:Key="JobTitleLabelStyle" TargetType="Label" BasedOn="{StaticResource LabelStyle}">
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor" Value="Gray" />
+            </Style>
+            <!--#endregion-->
+            <!--#region StackLayout Style-->
+            <Style x:Key="imageLableStackLayout" TargetType="StackLayout">
+                <Setter Property="Orientation" Value="Horizontal" />
+            </Style>
+
+            <Style x:Key="detailsStackLayout" TargetType="StackLayout">
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="FillAndExpand" />
+                <Setter Property="Spacing" Value="2" />
+            </Style>
+            <!--#endregion-->
+            <!--#region Image Style-->
+            <Style x:Key="imageStyle" TargetType="Image">
+                <Setter Property="WidthRequest" Value="8" />
+                <Setter Property="HeightRequest" Value="8" />
+            </Style>
+
+            <Style x:Key="profileImageStyle" TargetType="Image">
+                <Setter Property="WidthRequest" Value="80" />
+                <Setter Property="HeightRequest" Value="60" />
+                <Setter Property="Aspect" Value="Fill" />
+            </Style>
+
+            <Style x:Key="profileImageFrameStyle" TargetType="Frame">
+                <Setter Property="CornerRadius" Value="5" />
+                <Setter Property="Margin" Value="0" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="IsClippedToBounds" Value="True" />
+            </Style>
+            <!--#endregion-->
+            <!--#region Card View Frame Style-->
+            <Style x:Key="FrameCardViewStyle" TargetType="Frame">
+                <Setter Property="CornerRadius" Value="5" />
+                <Setter Property="Margin" Value="5" />
+                <Setter Property="Padding" Value="5" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="OutlineColor" Value="Linen" />
+                <Setter Property="HasShadow" Value="True" />
+            </Style>
+
+            <Style x:Key="itemsCardViewStackLayoutStyle" TargetType="StackLayout">
+                <Setter Property="Margin" Value="5" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+            </Style>
+
+            <Style x:Key="itemsInsideCardViewStackLayoutStyle" TargetType="StackLayout">
+                <Setter Property="Orientation" Value="Horizontal" />
+                <Setter Property="Spacing" Value="8" />
+            </Style>
+            <!--#endregion-->
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="add.png" Text="New" BindingContext="{StaticResource vm}" Command="{Binding NewContactCommand}" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <ListView x:Name="listView" ItemsSource="{Binding Source={StaticResource vm}, Path=Contacts}" HasUnevenRows="True" SeparatorVisibility="None">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ViewCell.ContextActions>
+                            <MenuItem  Text="Call" Command="{Binding Path=BindingContext.OnCallClickedCommand, Source={x:Reference Name=contactsPage}}" CommandParameter="{Binding .}">
+                            </MenuItem>
+                            <MenuItem  Text="Delete" Command="{Binding Path=BindingContext.OnDeleteClickedCommand, Source={x:Reference Name=contactsPage}}" CommandParameter="{Binding .}">
+                            </MenuItem>
+                        </ViewCell.ContextActions>
+                        <Frame Style="{StaticResource FrameCardViewStyle}">
+                            <StackLayout Style="{StaticResource itemsCardViewStackLayoutStyle}">
+                                <StackLayout Style="{StaticResource itemsInsideCardViewStackLayoutStyle}">
+                                    <Frame Style="{StaticResource profileImageFrameStyle}">
+                                        <Image Style="{StaticResource profileImageStyle}" Source="{Binding PhotoUrl}" />
+                                    </Frame>
+                                    <StackLayout Style="{StaticResource detailsStackLayout}">
+                                        <Label Text="{Binding FullName}" Style="{StaticResource NameLabel}" />
+                                        <StackLayout Style="{StaticResource imageLableStackLayout}">
+                                            <Image Source="designation.png" Style="{StaticResource imageStyle}"></Image>
+                                            <Label Text="{Binding JobTitle}" Style="{StaticResource JobTitleLabelStyle}" />
+                                        </StackLayout>
+                                        <StackLayout Style="{StaticResource imageLableStackLayout}">
+                                            <Image Source="phone.png" Style="{StaticResource imageStyle}"></Image>
+                                            <Label Text="{Binding Phone}" Style="{StaticResource LabelStyle}" />
+                                        </StackLayout>
+                                        <StackLayout Style="{StaticResource imageLableStackLayout}">
+                                            <Image Source="company.png" Style="{StaticResource imageStyle}"></Image>
+                                            <Label Text="{Binding Company}" Style="{StaticResource LabelStyle}" />
+                                        </StackLayout>
+                                        <StackLayout Style="{StaticResource imageLableStackLayout}">
+                                            <Image Source="mail.png" Style="{StaticResource imageStyle}"></Image>
+                                            <Label Text="{Binding Email}" Style="{StaticResource LabelStyle}" />
+                                        </StackLayout>
+                                        <StackLayout Style="{StaticResource imageLableStackLayout}">
+                                            <Image Source="location.png" Style="{StaticResource imageStyle}"></Image>
+                                            <Label Text="{Binding Address}" Style="{StaticResource LabelStyle}" />
+                                        </StackLayout>
+                                    </StackLayout>
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage.Content>
+</ContentPage>

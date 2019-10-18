@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:Contacts;assembly=Contacts" x:Class="Contacts.Views.ContactDetailPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <!--#region Entry Style-->
+            <Style x:Key="entryStyle" TargetType="local:CustomEntry">
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="TextColor" Value="#414042" />
+            </Style>
+
+            <Style x:Key="entryStyleWithMargin" TargetType="local:CustomEntry" BasedOn="{StaticResource entryStyle}">
+                <Setter Property="Margin" Value="5,0,0,0" />
+            </Style>
+            <!--#endregion-->
+            <!--#region image icon Style-->
+            <Style x:Key="imageStyle" TargetType="Image">
+                <Setter Property="WidthRequest" Value="20" />
+                <Setter Property="HeightRequest" Value="20" />
+            </Style>
+            <!--#endregion-->
+            <!--#region Border line Style-->
+            <Style x:Key="boxViewStyle" TargetType="BoxView">
+                <Setter Property="HeightRequest" Value="1" />
+                <Setter Property="BackgroundColor" Value="#D1D3D4" />
+            </Style>
+            <!--#endregion-->
+            <!--#region Stack layout arrangement Styles-->
+            <Style x:Key="itemStackLayoutStyle" TargetType="StackLayout">
+                <Setter Property="Orientation" Value="Vertical" />
+                <Setter Property="Spacing" Value="0" />
+            </Style>
+
+            <Style x:Key="imageEntryStackLayoutStyle" TargetType="StackLayout">
+                <Setter Property="Orientation" Value="Horizontal" />
+                <Setter Property="HorizontalOptions" Value="Fill" />
+                <Setter Property="Padding" Value="5" />
+            </Style>
+
+            <Style x:Key="spacingStackLayoutStyle" TargetType="StackLayout">
+                <Setter Property="Spacing" Value="0" />
+            </Style>
+
+            <Style x:Key="spacingMarginPaddingStackLayoutStyle" TargetType="StackLayout">
+                <Setter Property="Spacing" Value="8" />
+                <Setter Property="Margin" Value="5" />
+                <Setter Property="Padding" Value="5" />
+            </Style>
+
+            <Style x:Key="marginPaddingSpacingStackLayoutStyle" TargetType="StackLayout">
+                <Setter Property="Spacing" Value="0" />
+                <Setter Property="Margin" Value="10" />
+                <Setter Property="Padding" Value="10" />
+            </Style>
+            <!--#endregion-->
+            <!--#region Save button Style-->
+            <Style x:Key="saveButtonStyle" TargetType="Button">
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="BackgroundColor" Value="#1094F6" />
+                <Setter Property="HeightRequest" Value="40" />
+                <Setter Property="CornerRadius" Value="8" />
+            </Style>
+            <!--#endregion-->
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <StackLayout Style="{StaticResource spacingMarginPaddingStackLayoutStyle}">
+            <StackLayout Style="{StaticResource marginPaddingSpacingStackLayoutStyle}">
+                 <StackLayout x:Name="Emp_id" Style="{StaticResource itemStackLayoutStyle}">
+                    <StackLayout Style="{StaticResource imageEntryStackLayoutStyle}">
+                        <local:CustomEntry x:Name="userId" Text="{Binding UserId,Mode=TwoWay}"
+                                           Placeholder="Enter your user id" Style="{StaticResource entryStyle}" Keyboard="Numeric" />
+                        <Image Source="id.png" Style="{StaticResource imageStyle}"></Image>
+                    </StackLayout>
+                    <BoxView Style="{StaticResource boxViewStyle}"></BoxView>
+                </StackLayout>
+                <StackLayout Style="{StaticResource spacingStackLayoutStyle}">
+                    <StackLayout Style="{StaticResource itemStackLayoutStyle}">
+                        <StackLayout Style="{StaticResource imageEntryStackLayoutStyle}">
+                            <local:CustomEntry x:Name="firstName" Text="{Binding FirstName,Mode=TwoWay}" Style="{StaticResource entryStyle}" Placeholder="Enter your firstName" />
+                            <Image Source="editProfile.png" Style="{StaticResource imageStyle}"></Image>
+                        </StackLayout>
+                        <BoxView Style="{StaticResource boxViewStyle}"></BoxView>
+                    </StackLayout>
+                    <StackLayout Style="{StaticResource itemStackLayoutStyle}">
+                        <local:CustomEntry x:Name="lastName" Style="{StaticResource entryStyleWithMargin}" Text="{Binding LastName, Mode=TwoWay}" Placeholder="Enter your lastName" />
+                        <BoxView Style="{StaticResource boxViewStyle}"></BoxView>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout Style="{StaticResource itemStackLayoutStyle}">
+                    <StackLayout Style="{StaticResource imageEntryStackLayoutStyle}">
+                        <local:CustomEntry x:Name="company" Text="{Binding Company, Mode=TwoWay}" Placeholder="Enter your company" Style="{StaticResource entryStyle}" />
+                        <Image Source="editCompany.png" Style="{StaticResource imageStyle}"></Image>
+                    </StackLayout>
+                    <BoxView Style="{StaticResource boxViewStyle}"></BoxView>
+                </StackLayout>
+                <StackLayout Style="{StaticResource itemStackLayoutStyle}">
+                    <StackLayout Style="{StaticResource imageEntryStackLayoutStyle}">
+                        <local:CustomEntry x:Name="email" Text="{Binding Email, Mode=TwoWay}" Placeholder="Enter your email"
+                                           Style="{StaticResource entryStyle}" Keyboard="Email">
+                            <local:CustomEntry.Behaviors>
+                                <local:EmailValidatorBehavior />
+                            </local:CustomEntry.Behaviors>
+                        </local:CustomEntry>
+                        <Image Source="editMail.png" Style="{StaticResource imageStyle}"></Image>
+                    </StackLayout>
+                    <BoxView Style="{StaticResource boxViewStyle}"></BoxView>
+                </StackLayout>
+                <StackLayout Style="{StaticResource itemStackLayoutStyle}">
+                    <StackLayout Style="{StaticResource imageEntryStackLayoutStyle}">
+                        <local:CustomEntry x:Name="jobTitle" Text="{Binding JobTitle, Mode=TwoWay}" Placeholder="Enter your designation" Style="{StaticResource entryStyle}" />
+                        <Image Source="editJob.png" Style="{StaticResource imageStyle}"></Image>
+                    </StackLayout>
+                    <BoxView Style="{StaticResource boxViewStyle}"></BoxView>
+                </StackLayout>
+                <StackLayout Style="{StaticResource itemStackLayoutStyle}">
+                    <StackLayout Style="{StaticResource imageEntryStackLayoutStyle}">
+                        <local:CustomEntry x:Name="phone" Text="{Binding Phone, Mode=TwoWay}" Placeholder="Enter your phone number" MaxLength="10" Style="{StaticResource entryStyle}" Keyboard="Numeric" />
+                        <Image Source="editPhone.png" Style="{StaticResource imageStyle}"></Image>
+                    </StackLayout>
+                    <BoxView Style="{StaticResource boxViewStyle}"></BoxView>
+                </StackLayout>
+                <StackLayout Style="{StaticResource itemStackLayoutStyle}">
+                    <StackLayout Style="{StaticResource spacingStackLayoutStyle}">
+                        <StackLayout Style="{StaticResource imageEntryStackLayoutStyle}">
+                            <local:CustomEntry x:Name="street" Text="{Binding Street, Mode=TwoWay}"
+                                               Placeholder="Enter your street name" Style="{StaticResource entryStyle}" />
+                            <Image Source="editLocation.png" Style="{StaticResource imageStyle}"></Image>
+                        </StackLayout>
+                        <BoxView Style="{StaticResource boxViewStyle}"></BoxView>
+                    </StackLayout>
+                    <StackLayout Style="{StaticResource itemStackLayoutStyle}">
+                        <local:CustomEntry x:Name="city" Style="{StaticResource entryStyleWithMargin}" Text="{Binding City, Mode=TwoWay}" Placeholder="Enter your city name" />
+                        <BoxView Style="{StaticResource boxViewStyle}"></BoxView>
+                    </StackLayout>
+                    <StackLayout Style="{StaticResource itemStackLayoutStyle}">
+                        <local:CustomEntry x:Name="postalCode" Style="{StaticResource entryStyleWithMargin}" Text="{Binding PostalCode, Mode=TwoWay}" MaxLength="6" Placeholder="Enter your postalcode" Keyboard="Numeric" />
+                        <BoxView Style="{StaticResource boxViewStyle}"></BoxView>
+                    </StackLayout>
+                    <StackLayout Style="{StaticResource itemStackLayoutStyle}">
+                        <local:CustomEntry x:Name="state" Style="{StaticResource entryStyleWithMargin}" Text="{Binding State, Mode=TwoWay}" Placeholder="Enter your state" />
+                        <BoxView Style="{StaticResource boxViewStyle}"></BoxView>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+            <Button x:Name="saveButton" Text="Save" TextColor="White" IsEnabled="True" Style="{StaticResource saveButtonStyle}" Command="{Binding SaveCommand}" CommandParameter="{Binding CanSave}" />
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>
