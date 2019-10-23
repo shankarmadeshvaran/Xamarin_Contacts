@@ -63,7 +63,7 @@ namespace Contacts.ViewModels
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public void NewContact()
+        public async void NewContact()
         {
             App.Current.MainPage.Navigation.PushAsync(new ContactDetailPage());
         }

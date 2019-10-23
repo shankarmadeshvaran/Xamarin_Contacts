@@ -74,6 +74,19 @@ namespace Contacts.Models
             }
         }
 
+        public static bool CheckIfUserExists(Contact contact)
+        {
+            using (SQLiteConnection connection = new SQLiteConnection(App.DatabasePath))
+            {
+                var contacts = connection.Table<Contact>();
+                var userContact = contacts.Where(x => x.UserId == contact.UserId).FirstOrDefault();
+                if (userContact == null)
+                    return false;
+                else
+                    return true;
+            }
+        }
+
         public static int GetContactsCount()
         {
             using (SQLiteConnection connection = new SQLiteConnection(App.DatabasePath))

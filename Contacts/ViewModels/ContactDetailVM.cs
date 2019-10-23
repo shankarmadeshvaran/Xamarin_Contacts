@@ -8,7 +8,7 @@ using Xamarin.Forms;
 
 namespace Contacts.ViewModels
 {
-    public class ContactDetailVM: INotifyPropertyChanged
+    public class ContactDetailVM : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -65,11 +65,11 @@ namespace Contacts.ViewModels
                 OnPropertyChanged("FullName");
             }
         }
-        
         public string Company
         {
             get { return company; }
-            set {
+            set
+            {
                 company = value;
                 OnPropertyChanged("Company");
             }
@@ -78,7 +78,8 @@ namespace Contacts.ViewModels
         public string Email
         {
             get { return email; }
-            set {
+            set
+            {
                 email = value;
                 OnPropertyChanged("Email");
                 OnPropertyChanged("CanSave");
@@ -88,7 +89,8 @@ namespace Contacts.ViewModels
         public string JobTitle
         {
             get { return jobTitle; }
-            set {
+            set
+            {
                 jobTitle = value;
                 OnPropertyChanged("JobTitle");
             }
@@ -97,7 +99,8 @@ namespace Contacts.ViewModels
         public string Phone
         {
             get { return phone; }
-            set {
+            set
+            {
                 phone = value;
                 OnPropertyChanged("Phone");
                 OnPropertyChanged("CanSave");
@@ -107,7 +110,8 @@ namespace Contacts.ViewModels
         public string Street
         {
             get { return street; }
-            set {
+            set
+            {
                 street = value;
                 OnPropertyChanged("Street");
                 OnPropertyChanged("Address");
@@ -117,7 +121,8 @@ namespace Contacts.ViewModels
         public string City
         {
             get { return city; }
-            set {
+            set
+            {
                 city = value;
                 OnPropertyChanged("City");
                 OnPropertyChanged("Address");
@@ -127,7 +132,8 @@ namespace Contacts.ViewModels
         public string PostalCode
         {
             get { return postalCode; }
-            set {
+            set
+            {
                 postalCode = value;
                 OnPropertyChanged("PostalCode");
                 OnPropertyChanged("Address");
@@ -139,7 +145,8 @@ namespace Contacts.ViewModels
         public string State
         {
             get { return state; }
-            set {
+            set
+            {
                 state = value;
                 OnPropertyChanged("State");
                 OnPropertyChanged("Address");
@@ -160,7 +167,8 @@ namespace Contacts.ViewModels
 
         public bool CanSave
         {
-            get {
+            get
+            {
                 return !string.IsNullOrWhiteSpace(FirstName) &&
                     !string.IsNullOrWhiteSpace(Email) && !string.IsNullOrWhiteSpace(Phone);
             }
@@ -191,25 +199,33 @@ namespace Contacts.ViewModels
                 PhotoUrl = profileImage[Contact.GetContactsCount() % 10]
             };
 
-            bool insertSuccessful = newExperience.InsertContacts();
-
-            if (insertSuccessful)
+            if (!Contact.CheckIfUserExists(contact: newExperience))
             {
-                FirstName = string.Empty;
-                LastName = string.Empty;
-                Company = string.Empty;
-                Email = string.Empty;
-                JobTitle = string.Empty;
-                Phone = string.Empty;
-                City = string.Empty;
-                PostalCode = string.Empty;
-                State = string.Empty;
-                App.Current.MainPage.Navigation.PopAsync();
+                bool insertSuccessfull = newExperience.InsertContacts();
+
+                if (insertSuccessfull)
+                {
+                    App.Current.MainPage.Navigation.PopAsync();
+                    FirstName = string.Empty;
+                    LastName = string.Empty;
+                    Company = string.Empty;
+                    Email = string.Empty;
+                    JobTitle = string.Empty;
+                    Phone = string.Empty;
+                    City = string.Empty;
+                    PostalCode = string.Empty;
+                    State = string.Empty;
+                }
+                else
+                {
+                    App.Current.MainPage.DisplayAlert("Error", "There was an error inserting the Experience, please try again", "Ok");
+                }
             }
             else
             {
-                App.Current.MainPage.DisplayAlert("Error", "There was an error inserting the Experience, please try again", "Ok");
+                App.Current.MainPage.DisplayAlert("Error", "User ID Should be unique", "OK");
             }
+
         }
     }
 }
