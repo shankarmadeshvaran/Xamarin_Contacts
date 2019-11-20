@@ -31,7 +31,7 @@ I'll constantly update this project whenever I find the great coding standards a
  SQLite and developed in MVVM architecture(Every features are fall under MVVM Pattern).
  Consider star the repo if you like it.Thanks
  ```
- [**Xamarin_ContactsBook Repository(Used SQLite and also in MVVM Pattern)**](https://github.com/shankarmadeshvaran/Xamarin_MVVM_ContactsBook)
+ [**Xamarin_ContactsBook Repository(Used SQLite and also in MVVM Pattern)**](https://github.com/shankarmadeshvaran/Xamarin-Blog-Projects/tree/ContactsBook)
 
 ## More Updates
 I'll constanly implement lot more features whenever something popup in my mind.Follow me on [Twitter](https://twitter.com/Shankar__am) or [LinkedIn](https://www.linkedin.com/in/shankar-mathesh) to get the latest update about features, code and more. Consider star the repo if you like it.
